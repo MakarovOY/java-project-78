@@ -1,10 +1,6 @@
 package hexlet.code.schemas;
 
-//import lombok.Getter;
-//import lombok.Setter;
-//
-//@Getter
-//@Setter
+
 
 public class NumberSchema extends BaseSchema<Integer> {
 

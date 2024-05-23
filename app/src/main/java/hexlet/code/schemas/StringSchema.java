@@ -1,5 +1,5 @@
 package hexlet.code.schemas;
-@SuppressWarnings("HiddenField")
+
 public class StringSchema extends BaseSchema<String> {
     private int minLength;
     private boolean flagRequired;
