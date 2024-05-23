@@ -21,6 +21,9 @@ dependencies {
     testAnnotationProcessor ("org.projectlombok:lombok:1.18.20")
     testImplementation ("org.assertj:assertj-core:3.19.0")
 }
+jacoco {
+    toolVersion = "0.8.11"
+}
 
 tasks.test {
     useJUnitPlatform()
