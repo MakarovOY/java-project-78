@@ -1,2 +1,2 @@
 report:
-	make -C app report
+	make -C App report
