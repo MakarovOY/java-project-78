@@ -5,7 +5,7 @@ package hexlet.code.schemas;
 //
 //@Getter
 //@Setter
-@SuppressWarnings("HiddenField")
+
 public class NumberSchema extends BaseSchema<Integer> {
 
     private int minRange;
