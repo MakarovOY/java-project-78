@@ -9,12 +9,12 @@ public class MapSchema extends BaseSchema<Map> {
     private boolean requiredFlag;
     private boolean sizeOfFlag;
     private int size;
-    private Map<String, BaseSchema<String>> schemas;
+    private Map<String, BaseSchema> schemas;
 
 
 
     @Override
-    boolean isValid(Map value) {
+    public boolean isValid(Map value) {
 
         if (requiredFlag && value == null) {
 
@@ -30,11 +30,14 @@ public class MapSchema extends BaseSchema<Map> {
         if (schemas != null) {
             var set = schemas.entrySet();
             for (var s: set) {
+
+                // схема:
                 var v = s.getValue();
 
-                // значение по ключу:
-                var x = (String) value.get(s.getKey());
+                // значение по ключу, которое надо проверить:
+                var x = value.get(s.getKey());
 
+                // вызов метода у полученной схемы и передача значения на проверку:
                 v.isValid(x);
 
             }
@@ -56,8 +59,10 @@ public class MapSchema extends BaseSchema<Map> {
 
         return this;
     }
-    public MapSchema shape(Map<String, BaseSchema<String>> schemasValue) {
+    public MapSchema shape(Map<String, BaseSchema> schemasValue) {
         this.schemas = schemasValue;
         return this;
     }
+
+
 }

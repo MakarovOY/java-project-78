@@ -19,7 +19,7 @@ public class StringSchema extends BaseSchema<String> {
 
 
     @Override
-    public BaseSchema required() {
+    public StringSchema required() {
 
         flagRequired = true;
 

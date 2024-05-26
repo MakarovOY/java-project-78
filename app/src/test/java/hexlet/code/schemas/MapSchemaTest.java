@@ -78,18 +78,20 @@ class MapSchemaTest {
     public void test7() {
         Validator validator1 = new Validator();
         MapSchema schema1 = validator.map();
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("firstName", validator1.string().required());
         schemas.put("lastName", validator1.string().required());
         Map<String, String> human1 = new HashMap<>();
         human1.put("firstName", "John");
         human1.put("lastName", "Smith");
 
+
         schema1.shape(schemas);
 
         boolean actual =  schema1.isValid(human1);
         boolean expected = true;
         assertThat(actual).isEqualTo(expected);
+
 
 
     }
