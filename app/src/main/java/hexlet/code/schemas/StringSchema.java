@@ -45,9 +45,10 @@ public class StringSchema extends BaseSchema<String> {
         }
         if (flagRequired) {
 
-            return false;
+            return value != null && value.length() != 0 ? true : false;
 
         }
+
 
         return true;
 

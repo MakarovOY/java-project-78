@@ -32,13 +32,15 @@ public class MapSchema extends BaseSchema<Map> {
             for (var s: set) {
 
                 // схема:
-                var v = s.getValue();
+                var schema = s.getValue();
 
                 // значение по ключу, которое надо проверить:
-                var x = value.get(s.getKey());
+                var valueToCheck = value.get(s.getKey());
 
                 // вызов метода у полученной схемы и передача значения на проверку:
-                v.isValid(x);
+                 if (!schema.isValid(valueToCheck)){
+                     return false;
+                 }
 
             }
 

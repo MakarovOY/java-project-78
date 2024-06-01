@@ -16,6 +16,7 @@ public class Main {
 
 
 
+        BaseSchema baseSchema = new Validator().string();
 
         Validator validator = new Validator();
         MapSchema schema = validator.map();
@@ -26,7 +27,7 @@ public class Main {
         schemas2.put("age", validator.number().positive());
 
         Map<String, Object> human1 = new HashMap<>();
-        human1.put("firstName", "");
+        human1.put("firstName", "abc");
         human1.put("age", -20);
 
         System.out.println(schema.shape(schemas2).isValid(human1));
