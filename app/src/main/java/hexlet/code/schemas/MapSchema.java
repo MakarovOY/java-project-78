@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 
-public class MapSchema extends BaseSchema<Map<String, ?>> {
+public class MapSchema extends BaseSchema<Map<String,Object>> {
 
     private boolean requiredFlag;
     private boolean sizeOfFlag;
@@ -14,7 +14,7 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
 
 
     @Override
-    public boolean isValid(Map<String, ?>  value) {
+    public boolean isValid(Map<String, Object>  value) {
 
         if (requiredFlag && value == null) {
 
