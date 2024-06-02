@@ -33,7 +33,7 @@ public class MapSchema extends BaseSchema<Map<String,Object>> {
         if (schemas != null) {
             for (Map.Entry<String, BaseSchema<?>> entry : schemas.entrySet()) {
                 String key = entry.getKey();
-                BaseSchema<?> schema = entry.getValue();
+                BaseSchema <?> schema = entry.getValue();
                 Object valueToCheck = value.get(key);
 
                 if (!schema.isValid(valueToCheck)) {
