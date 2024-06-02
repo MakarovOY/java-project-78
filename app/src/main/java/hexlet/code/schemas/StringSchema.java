@@ -7,8 +7,8 @@ public class StringSchema extends BaseSchema<String> {
 
 
 
-    public StringSchema minLength(int minLengthVlue) {
-        this.minLength = minLengthVlue;
+    public StringSchema minLength(int minLengthValue) {
+        this.minLength = minLengthValue;
         return this;
     }
 
