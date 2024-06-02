@@ -4,22 +4,25 @@ import java.util.Map;
 
 @SuppressWarnings("HiddenField")
 
-public class MapSchema extends BaseSchema<Map> {
+public class MapSchema extends BaseSchema<Map<String, ?>> {
 
     private boolean requiredFlag;
     private boolean sizeOfFlag;
     private int size;
-    private Map<String, BaseSchema> schemas;
+    private Map<String, BaseSchema<?>> schemas;
 
 
 
     @Override
-    public boolean isValid(Map value) {
+    public boolean isValid(Map<String, ?>  value) {
 
         if (requiredFlag && value == null) {
 
             return false;
 
+        }
+        if (value == null) {
+            return true;
         }
 
         if (sizeOfFlag && value.size() != size) {
@@ -28,29 +31,22 @@ public class MapSchema extends BaseSchema<Map> {
 
 
         if (schemas != null) {
-            var set = schemas.entrySet();
-            for (var s: set) {
+            for (Map.Entry<String, BaseSchema<?>> entry : schemas.entrySet()) {
+                String key = entry.getKey();
+                BaseSchema<?> schema = entry.getValue();
+                Object valueToCheck = value.get(key);
 
-                // схема:
-                var schema = s.getValue();
-
-                // значение по ключу, которое надо проверить:
-                var valueToCheck = value.get(s.getKey());
-
-                // вызов метода у полученной схемы и передача значения на проверку:
-                 if (!schema.isValid(valueToCheck)){
-                     return false;
-                 }
-
+                if (!schema.isValid(valueToCheck)) {
+                    return false;
+                }
             }
-
         }
 
         return true;
     }
 
     @Override
-    public BaseSchema required() {
+    public MapSchema required() {
         this.requiredFlag = true;
         return this;
     }
@@ -61,7 +57,7 @@ public class MapSchema extends BaseSchema<Map> {
 
         return this;
     }
-    public MapSchema shape(Map<String, BaseSchema> schemasValue) {
+    public MapSchema shape(Map<String, BaseSchema<?>> schemasValue) {
         this.schemas = schemasValue;
         return this;
     }

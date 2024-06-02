@@ -26,7 +26,7 @@ public class NumberSchema extends BaseSchema<Integer> {
 
 
     @Override
-    public BaseSchema required() {
+    public NumberSchema required() {
         this.flagRequired = true;
         return this;
     }

@@ -22,7 +22,7 @@ public class Main {
         MapSchema schema = validator.map();
 
 
-        Map<String, BaseSchema> schemas2 = new HashMap<>();
+        Map<String, BaseSchema<?>> schemas2 = new HashMap<>();
         schemas2.put("firstName", validator.string().required());
         schemas2.put("age", validator.number().positive());
 

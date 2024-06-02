@@ -78,7 +78,7 @@ class MapSchemaTest {
     public void test7() {
         Validator validator1 = new Validator();
         MapSchema schema1 = validator.map();
-        Map<String, BaseSchema> schemas = new HashMap<>();
+        Map<String, BaseSchema<?>> schemas = new HashMap<>();
         schemas.put("firstName", validator1.string().required());
         schemas.put("lastName", validator1.string().required());
         Map<String, String> human1 = new HashMap<>();
