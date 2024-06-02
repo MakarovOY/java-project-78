@@ -16,7 +16,7 @@ public class Main {
 
 
 
-        BaseSchema baseSchema = new Validator().string();
+        BaseSchema<?> baseSchema = new Validator().string();
 
         Validator validator = new Validator();
         MapSchema schema = validator.map();

@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-@SuppressWarnings("HiddenField")
+
 
 public class MapSchema extends BaseSchema<Map<String, ?>> {
 
