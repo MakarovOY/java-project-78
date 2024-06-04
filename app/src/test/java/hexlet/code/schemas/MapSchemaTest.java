@@ -46,7 +46,7 @@ class MapSchemaTest {
     @Test
     public void test4() {
         schema.required();
-        var data = new HashMap<String, String>();
+        var data = new HashMap<String, Object>();
         data.put("key1", "value1");
         boolean actual = schema.isValid(data);
         boolean expected = true;
@@ -56,7 +56,7 @@ class MapSchemaTest {
     @Test
     public void test5() {
         schema.required();
-        var data = new HashMap<String, String>();
+        var data = new HashMap<String, Object>();
         data.put("key1", "value1");
         boolean actual = schema.sizeOf(2).isValid(data);
         boolean expected = false;
@@ -66,7 +66,7 @@ class MapSchemaTest {
     @Test
     public void test6() {
         schema.required();
-        var data = new HashMap<String, String>();
+        var data = new HashMap<String, Object>();
         data.put("key1", "value1");
         data.put("key2", "value2");
         boolean actual = schema.sizeOf(2).isValid(data);
@@ -81,7 +81,7 @@ class MapSchemaTest {
         Map<String, BaseSchema<?>> schemas = new HashMap<>();
         schemas.put("firstName", validator1.string().required());
         schemas.put("lastName", validator1.string().required());
-        Map<String, String> human1 = new HashMap<>();
+        Map<String, Object> human1 = new HashMap<>();
         human1.put("firstName", "John");
         human1.put("lastName", "Smith");
 

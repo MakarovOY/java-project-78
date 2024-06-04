@@ -36,13 +36,23 @@ public class MapSchema extends BaseSchema<Map<String,Object>> {
                 BaseSchema <?> schema = entry.getValue();
                 Object valueToCheck = value.get(key);
 
-                if (!schema.isValid(valueToCheck)) {
+                if (!isValidSchema(schema, valueToCheck)) {
                     return false;
                 }
             }
         }
 
         return true;
+    }
+
+    private <T> boolean isValidSchema(BaseSchema<T> schema, Object valueToCheck){
+
+        try {
+            return schema.isValid((T) valueToCheck);
+        } catch (ClassCastException e) {
+            return false;
+        }
+
     }
 
     @Override
