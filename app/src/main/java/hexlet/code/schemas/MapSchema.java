@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 
-public class MapSchema extends BaseSchema<Map<String,Object>> {
+public class MapSchema extends BaseSchema<Map<String, ?>> {
 
     private boolean requiredFlag;
     private boolean sizeOfFlag;
@@ -14,7 +14,7 @@ public class MapSchema extends BaseSchema<Map<String,Object>> {
 
 
     @Override
-    public boolean isValid(Map<String, Object>  value) {
+    public boolean isValid(Map<String, ?>  value) {
 
         if (requiredFlag && value == null) {
 
@@ -33,7 +33,7 @@ public class MapSchema extends BaseSchema<Map<String,Object>> {
         if (schemas != null) {
             for (Map.Entry<String, BaseSchema<?>> entry : schemas.entrySet()) {
                 String key = entry.getKey();
-                BaseSchema <?> schema = entry.getValue();
+                BaseSchema<?> schema = entry.getValue();
                 Object valueToCheck = value.get(key);
 
                 if (!isValidSchema(schema, valueToCheck)) {
@@ -45,7 +45,7 @@ public class MapSchema extends BaseSchema<Map<String,Object>> {
         return true;
     }
 
-    private <T> boolean isValidSchema(BaseSchema<T> schema, Object valueToCheck){
+    private <T> boolean isValidSchema(BaseSchema<T> schema, Object valueToCheck) {
 
         try {
             return schema.isValid((T) valueToCheck);
