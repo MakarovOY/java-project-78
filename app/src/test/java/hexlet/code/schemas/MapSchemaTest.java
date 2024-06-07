@@ -101,7 +101,7 @@ class MapSchemaTest {
         Map<String, BaseSchema<?>> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
         schemas.put("lastName", validator.string().required());
-        schemas.put("age", validator.number().required());
+        schemas.put("age", validator.number().required().positive());
         Map<String, Object> human1 = new HashMap<>();
         human1.put("firstName", "Nik");
         human1.put("lastName", "Pic");
