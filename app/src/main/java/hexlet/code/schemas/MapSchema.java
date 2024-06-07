@@ -5,12 +5,14 @@ import java.util.Map;
 
 
 public class MapSchema extends BaseSchema<Map<String, ?>> {
+    //поля:
 
     private boolean requiredFlag;
     private boolean sizeOfFlag;
     private int size;
     private Map<String, BaseSchema<?>> schemas;
 
+   // методы
 
 
     @Override
