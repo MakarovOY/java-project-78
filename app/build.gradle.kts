@@ -1,12 +1,11 @@
 plugins {
-    application
+    id("java")
     jacoco
     id ("checkstyle")
 }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
-
 
 repositories {
     mavenCentral()
