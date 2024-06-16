@@ -10,7 +10,7 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
     private boolean requiredFlag;
     private boolean sizeOfFlag;
     private int size;
-    private Map<String, BaseSchema<?>> schemas;
+    private Map<String, BaseSchema> schemas;
 
    // методы
 
@@ -33,7 +33,7 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
 
 
         if (schemas != null) {
-            for (Map.Entry<String, BaseSchema<?>> entry : schemas.entrySet()) {
+            for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
                 String key = entry.getKey();
                 BaseSchema<?> schema = entry.getValue();
                 Object valueToCheck = value.get(key);
@@ -69,7 +69,7 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
 
         return this;
     }
-    public MapSchema shape(Map<String, BaseSchema<?>> schemasValue) {
+    public MapSchema shape(Map<String, BaseSchema> schemasValue) {
         this.schemas = schemasValue;
         return this;
     }

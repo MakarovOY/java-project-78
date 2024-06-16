@@ -77,7 +77,7 @@ class MapSchemaTest {
     @Test
     public void test7() {
         MapSchema schema1 = validator.map();
-        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
         schemas.put("lastName", validator.string().required());
         schemas.put("age", validator.number());
@@ -98,7 +98,7 @@ class MapSchemaTest {
     @Test
     public void test8() {
         MapSchema schema1 = validator.map();
-        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
         schemas.put("lastName", validator.string().required());
         schemas.put("age", validator.number().required().positive());
@@ -119,7 +119,7 @@ class MapSchemaTest {
     @Test
     public void test9() {
         MapSchema schema1 = validator.map();
-        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
         schemas.put("lastName", validator.string().required());
         schemas.put("age", validator.number());
