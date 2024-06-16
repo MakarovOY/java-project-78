@@ -58,7 +58,7 @@ class MapSchemaTest {
         schema.required();
         var data = new HashMap<String, Object>();
         data.put("key1", "value1");
-        boolean actual = schema.sizeOf(2).isValid(data);
+        boolean actual = schema.sizeof(2).isValid(data);
         boolean expected = false;
         assertThat(actual).isEqualTo(expected);
 
@@ -69,7 +69,7 @@ class MapSchemaTest {
         var data = new HashMap<String, Object>();
         data.put("key1", "value1");
         data.put("key2", "value2");
-        boolean actual = schema.sizeOf(2).isValid(data);
+        boolean actual = schema.sizeof(2).isValid(data);
         boolean expected = true;
         assertThat(actual).isEqualTo(expected);
 

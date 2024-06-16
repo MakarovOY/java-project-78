@@ -62,7 +62,7 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
         this.requiredFlag = true;
         return this;
     }
-    public MapSchema sizeOf(int sizeValue) {
+    public MapSchema sizeof(int sizeValue) {
         this.size = sizeValue;
         this.sizeOfFlag = true;
 
