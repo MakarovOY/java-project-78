@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class StringSchemaTest {
 
-    Validator validator;
-    StringSchema schema;
+    private Validator validator;
+    private StringSchema schema;
 
     @BeforeEach
     public void createSchema() {

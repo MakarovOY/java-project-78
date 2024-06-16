@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 
-public class MapSchema extends BaseSchema<Map<String, ?>> {
+public final class MapSchema extends BaseSchema<Map<String, ?>> {
     //поля:
 
     private boolean requiredFlag;

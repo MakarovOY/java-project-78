@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 
 
-public class NumberSchema extends BaseSchema<Integer> {
+public final class NumberSchema extends BaseSchema<Integer> {
 
     private int minRange;
     private int maxRange;

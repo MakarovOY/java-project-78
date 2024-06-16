@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class NumberSchemaTest {
-    Validator validator;
-    NumberSchema schema;
+    private Validator validator;
+    private NumberSchema schema;
 
     @BeforeEach
     public void createNumberSchema() {
