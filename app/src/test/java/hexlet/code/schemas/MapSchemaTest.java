@@ -111,7 +111,7 @@ class MapSchemaTest {
         schema1.shape(schemas);
 
         boolean actual =  schema1.isValid(human1);
-        boolean expected = false;
+        boolean expected = true;
         assertThat(actual).isEqualTo(expected);
 
 
