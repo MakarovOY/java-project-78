@@ -16,7 +16,7 @@ class NumberSchemaTest {
         schema = validator.number();
     }
     @Test
-    public void test1() {
+    public void testValueWithoutRequiredMethod() {
 
         boolean actual = schema.isValid(1);
         boolean expected = true;
@@ -25,7 +25,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test2() {
+    public void testNullWithoutRequiredMethod() {
 
         boolean actual = schema.isValid(null);
         boolean expected = true;
@@ -34,7 +34,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test3() {
+    public void testNullWithRequiredMethod() {
 
         schema.required();
         boolean actual = schema.isValid(null);
@@ -44,7 +44,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test4() {
+    public void testNullWithPositiveMethod() {
 
         boolean actual = schema.positive().isValid(null);
         boolean expected = true;
@@ -53,7 +53,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test5() {
+    public void testPositiveValueWithPositiveMethod() {
 
         schema.required();
         boolean actual = schema.positive().isValid(10);
@@ -63,7 +63,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test6() {
+    public void testNegativeValueWithPositiveMethod() {
 
         schema.required();
         boolean actual = schema.positive().isValid(-10);
@@ -73,7 +73,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test7() {
+    public void testZeroValueWithPositiveMethod() {
 
         schema.required();
         boolean actual = schema.positive().isValid(0);
@@ -83,7 +83,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test8() {
+    public void testRangeMethodWithInBetweenValue() {
 
         schema.required();
         boolean actual1 = schema.positive().range(3, 5).isValid(3);
@@ -97,7 +97,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test9() {
+    public void testRangeMethodWithNotInBetweenValue() {
 
         schema.required();
         boolean actual1 = schema.positive().range(8, 10).isValid(6);
@@ -110,7 +110,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test10() {
+    public void testRangeMethodWithInBetweenValueWithNegativeValue() {
 
         schema.required();
         boolean actual1 = schema.range(-5, -3).isValid(-3);
@@ -124,7 +124,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test11() {
+    public void testRangeMethodWithInBetweenValueWithPositiveValue() {
 
         schema.required();
         boolean actual1 = schema.range(-3, -5).isValid(-2);
@@ -138,7 +138,7 @@ class NumberSchemaTest {
 
     }
     @Test
-    public void test12() {
+    public void testRangeMethodWithInBetweenValueAndWithNotInBetweenValue() {
 
         schema.required();
         boolean actual1 = schema.positive().range(5, 3).isValid(4);

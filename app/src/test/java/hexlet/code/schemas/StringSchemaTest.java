@@ -18,7 +18,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test1() {
+    public void testIsValidWithEmptyString() {
 
         boolean actual = schema.isValid("");
         boolean expected = true;
@@ -28,7 +28,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test2() {
+    public void testIsValidWithNull() {
 
         boolean actual = schema.isValid(null);
         boolean expected = true;
@@ -38,7 +38,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test3() {
+    public void testRequiredMethodWithNull() {
 
         schema.required();
         boolean actual = schema.isValid(null);
@@ -48,7 +48,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test4() {
+    public void testRequiredMethodWithEmptyString() {
 
         schema.required();
         boolean actual = schema.isValid("");
@@ -58,7 +58,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test5() {
+    public void testIsValidWithValue() {
 
         boolean actual = schema.isValid("text");
         boolean expected = true;
@@ -67,7 +67,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test6() {
+    public void testContainsMethodWithMatch() {
 
         boolean actual = schema.contains("te").isValid("text");
         boolean expected = true;
@@ -76,7 +76,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test7() {
+    public void testContainsMethodWithoutMatch() {
 
         boolean actual = schema.contains("no").isValid("text");
         boolean expected = false;
@@ -85,7 +85,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test8() {
+    public void testMinLengthMethodWithShortestStringValue() {
 
         boolean actual = schema.minLength(10).isValid("abc");
         boolean expected = false;
@@ -94,7 +94,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test9() {
+    public void testMinLengthMethodWithEnoughStringValue() {
 
         boolean actual = schema.minLength(3).isValid("abc");
         boolean expected = true;
@@ -103,7 +103,7 @@ class StringSchemaTest {
     }
 
     @Test
-    public void test10() {
+    public void testMinLengthMethodWithChangedValue() {
 
         boolean actual = schema.minLength(10).minLength(3).isValid("abc");
         boolean expected = true;

@@ -21,14 +21,14 @@ class MapSchemaTest {
         schema = validator.map();
     }
     @Test
-    public void test1() {
+    public void testWithNullValueWithoutRequiredMethod() {
         boolean actual = schema.isValid(null);
         boolean expected = true;
         assertThat(actual).isEqualTo(expected);
 
     }
     @Test
-    public void test2() {
+    public void testWithNullValueWithRequiredMethod() {
         schema.required();
         boolean actual = schema.isValid(null);
         boolean expected = false;
@@ -37,7 +37,7 @@ class MapSchemaTest {
 
     }
     @Test
-    public void test3() {
+    public void testEmptyMapWithRequiredMethod() {
         schema.required();
         boolean actual = schema.isValid(new HashMap<>());
         boolean expected = true;
@@ -45,7 +45,7 @@ class MapSchemaTest {
 
     }
     @Test
-    public void test4() {
+    public void testMapWithRequiredMethod() {
         schema.required();
         var data = new HashMap<String, String>();
         data.put("key1", "value1");
@@ -55,7 +55,7 @@ class MapSchemaTest {
 
     }
     @Test
-    public void test5() {
+    public void testWithRequiredAndSizeofMethodNegative() {
         schema.required();
         var data = new HashMap<String, Object>();
         data.put("key1", "value1");
@@ -65,7 +65,7 @@ class MapSchemaTest {
 
     }
     @Test
-    public void test6() {
+    public void testWithRequiredAndSizeofMethodPositive() {
         schema.required();
         var data = new HashMap<String, Object>();
         data.put("key1", "value1");
@@ -76,7 +76,7 @@ class MapSchemaTest {
 
     }
     @Test
-    public void test7() {
+    public void testWithShapeMethodPositive() {
         MapSchema schema1 = validator.map();
         Map<String, BaseSchema<String>> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
@@ -96,11 +96,11 @@ class MapSchemaTest {
     }
 
     @Test
-    public void test8() {
+    public void testWithShapeMethodNegative()  {
         MapSchema schema1 = validator.map();
         Map<String, BaseSchema<String>> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required());
-        schemas.put("lastName", validator.string().required());
+        schemas.put("lastName", validator.string().required().contains("ab"));
 
         Map<String, Object> human1 = new HashMap<>();
         human1.put("firstName", "Nik");
@@ -111,30 +111,10 @@ class MapSchemaTest {
         schema1.shape(schemas);
 
         boolean actual =  schema1.isValid(human1);
-        boolean expected = true;
+        boolean expected = false;
         assertThat(actual).isEqualTo(expected);
 
 
     }
-    @Test
-    public void test9() {
-        MapSchema schema1 = validator.map();
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
-        schemas.put("firstName", validator.string().required());
-        schemas.put("lastName", validator.string().required());
-        Map<String, Object> human1 = new HashMap<>();
-        human1.put("firstName", "John");
-        human1.put("lastName", "Smith");
-
-
-
-        schema1.shape(schemas);
-
-        boolean actual =  schema1.isValid(human1);
-        boolean expected = true;
-        assertThat(actual).isEqualTo(expected);
-
-    }
-
 
 }
