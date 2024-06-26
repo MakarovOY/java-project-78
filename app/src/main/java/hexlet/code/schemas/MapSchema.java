@@ -1,78 +1,33 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-
+import java.util.function.Predicate;
 
 
 public final class MapSchema extends BaseSchema<Map<String, ?>> {
-    //поля:
-
-    private boolean requiredFlag;
-    private boolean sizeOfFlag;
-    private int size;
-    private Map<String, BaseSchema<String>> schemas;
-
-   // методы
-
-
+    public MapSchema sizeof(int sizeValue) {
+        Predicate<Map<String, ?>> sizeof = v -> v.size() == sizeValue;
+        addCheck("sizeof", sizeof);
+        return this;
+    }
     @Override
-    public boolean isValid(Map<String, ?>  value) {
-
-        if (requiredFlag && value == null) {
-
-            return false;
-
-        }
-        if (value == null) {
-            return true;
-        }
-
-        if (sizeOfFlag && value.size() != size) {
-            return false;
-        }
-
-
-        if (schemas != null) {
-            for (Map.Entry<String, BaseSchema<String>> entry : schemas.entrySet()) {
-                String key = entry.getKey();
-                BaseSchema<?> schema = entry.getValue();
-                Object valueToCheck = value.get(key);
-
-                if (!isValidSchema(schema, valueToCheck)) {
+    public MapSchema required() {
+        Predicate<Map<String, ?>> required = v -> v != null;
+        addCheck("required", required);
+        return this;
+    }
+    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemasValue) {
+        var entries = schemasValue.entrySet();
+        Predicate<Map<String, ?>> shape = v -> {
+            for (var e : entries) {
+                if (!e.getValue().isValid((T) v.get(e.getKey()))) {
                     return false;
                 }
             }
-        }
-
-        return true;
-    }
-
-    private <T> boolean isValidSchema(BaseSchema<T> schema, Object valueToCheck) {
-
-        try {
-            return schema.isValid((T) valueToCheck);
-        } catch (ClassCastException e) {
-            return false;
-        }
-
-    }
-
-    @Override
-    public MapSchema required() {
-        this.requiredFlag = true;
+            return true;
+        };
+        addCheck("shape", shape);
         return this;
     }
-    public MapSchema sizeof(int sizeValue) {
-        this.size = sizeValue;
-        this.sizeOfFlag = true;
-
-
-        return this;
-    }
-    public MapSchema shape(Map<String, BaseSchema<String>> schemasValue) {
-        this.schemas = schemasValue;
-        return this;
-    }
-
 
 }

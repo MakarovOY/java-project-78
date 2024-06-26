@@ -1,59 +1,31 @@
 package hexlet.code.schemas;
 
 
+import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema<Integer> {
 
-    private int minRange;
-    private int maxRange;
-
-    private boolean flagRequired;
-    private boolean flagPositiveNumber;
-
-
-
-
     public NumberSchema positive() {
-        this.flagPositiveNumber = true;
+        Predicate<Integer> positive = v ->  {
+
+            if (checks.get("required") == null && v == null) {
+                return true;
+            } else {
+                return v > 0;
+            }
+        };
+        addCheck("positive", positive);
         return this;
     }
     public NumberSchema range(int minRangeValue, int maxRangeValue) {
-        this.minRange = minRangeValue;
-        this.maxRange = maxRangeValue;
-
+        Predicate<Integer> range = v -> (v >= minRangeValue && v <= maxRangeValue);
+        addCheck("range", range);
         return this;
     }
-
-
     @Override
-    public NumberSchema required() {
-        this.flagRequired = true;
-        return this;
+    public BaseSchema<Integer> required() {
+        Predicate<Integer> required = v -> v != null;
+        addCheck("required", required);
+        return null;
     }
-
-
-    @Override
-    public boolean isValid(Integer value) {
-
-        if (maxRange != 0 && minRange != 0) {
-            if (value < minRange || value > maxRange) {
-                return false;
-            }
-        }
-        if (value == null) {
-            if (flagRequired) {
-                return false;
-            }
-            if (flagPositiveNumber) {
-                return true;
-            }
-        }
-
-        if (flagPositiveNumber && value <= 0) {
-            return false;
-        }
-
-        return true;
-    }
-
 }
