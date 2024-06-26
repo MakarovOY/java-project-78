@@ -10,6 +10,9 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
+    /**
+     *  d0nt touch it!
+     */
     public  boolean isValid(T value) {
         for (Predicate<T> schemaToTest : checks.values()) {
             if (!schemaToTest.test(value)) {
