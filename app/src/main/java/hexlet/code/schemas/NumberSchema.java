@@ -3,7 +3,6 @@ package hexlet.code.schemas;
 import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema<Integer> {
-
     public NumberSchema positive() {
         Predicate<Integer> positive = v ->  {
             if (checks.get("required") == null && v == null) {
