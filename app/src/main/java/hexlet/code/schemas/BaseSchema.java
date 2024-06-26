@@ -11,7 +11,9 @@ public abstract class BaseSchema<T> {
     }
 
     /**
-     *  d0nt touch it!
+     *
+     * @param value это значение для валидации
+     * @return возврат булевого значения
      */
     public  boolean isValid(T value) {
         for (Predicate<T> schemaToTest : checks.values()) {
