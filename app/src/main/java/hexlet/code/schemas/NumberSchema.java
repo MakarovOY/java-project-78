@@ -7,12 +7,13 @@ public final class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema positive() {
         Predicate<Integer> positive = v ->  {
-
             if (checks.get("required") == null && v == null) {
                 return true;
-            } else {
+            }
+            if (v != null) {
                 return v > 0;
             }
+            return true;
         };
         addCheck("positive", positive);
         return this;
