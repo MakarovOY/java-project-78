@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ValidatorTest {
 
     private Validator v;
+
     @BeforeEach
     public void createValidator() {
         v = new Validator();
@@ -61,6 +62,7 @@ class ValidatorTest {
         human2.put("lastName", "Pic");
         assertThat(schema8.shape(schemas8).isValid(human2)).isFalse();
     }
+
     @Test
     public void numberTest() {
         var schema = v.number();
@@ -107,6 +109,7 @@ class ValidatorTest {
         assertThat(schema12.positive().range(5, 3).isValid(4)).isFalse();
         assertThat(schema12.positive().range(5, 3).isValid(5)).isFalse();
     }
+
     @Test
     public void stringTest() {
         var schema1 = v.string();
