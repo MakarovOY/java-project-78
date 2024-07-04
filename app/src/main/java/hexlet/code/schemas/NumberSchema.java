@@ -3,11 +3,9 @@ package hexlet.code.schemas;
 import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema<Integer> {
+
     public NumberSchema positive() {
         Predicate<Integer> positive = v ->  {
-            if (checks.get("required") == null && v == null) {
-                return true;
-            }
             if (v != null) {
                 return v > 0;
             }
@@ -22,9 +20,9 @@ public final class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
     @Override
-    public BaseSchema<Integer> required() {
+    public NumberSchema required() {
         Predicate<Integer> required = v -> v != null;
         addCheck("required", required);
-        return null;
+        return this;
     }
 }

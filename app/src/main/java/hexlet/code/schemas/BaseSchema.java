@@ -10,12 +10,7 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
-    /**
-     *
-     * @param value это значение для валидации
-     * @return возврат булевого значения
-     */
-    public  boolean isValid(T value) {
+    public final   boolean isValid(T value) {
         for (Predicate<T> schemaToTest : checks.values()) {
             if (!schemaToTest.test(value)) {
                 return false;

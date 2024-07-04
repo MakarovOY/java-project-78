@@ -3,8 +3,8 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-
 public final class MapSchema extends BaseSchema<Map<String, ?>> {
+
     public MapSchema sizeof(int sizeValue) {
         Predicate<Map<String, ?>> sizeof = v -> v.size() == sizeValue;
         addCheck("sizeof", sizeof);
@@ -29,5 +29,4 @@ public final class MapSchema extends BaseSchema<Map<String, ?>> {
         addCheck("shape", shape);
         return this;
     }
-
 }
